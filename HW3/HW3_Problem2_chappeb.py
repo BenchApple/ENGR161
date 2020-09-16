@@ -11,6 +11,7 @@ def main():
     # Stores the number of harmonics to investigate.
     numHarmonics = int(input("How many harmonics do you want to investigate? "))
 
+    # Loop through each of the harmonics desired, and print whether they are filtered completely, partially, or not at all
     for harmonic in range(fundementalFreq, fundementalFreq * numHarmonics + 1, fundementalFreq):
         curHarmonic = str(int(harmonic / fundementalFreq))
         if harmonic > highFreqFilter or harmonic < lowFreqFilter:
