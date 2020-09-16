@@ -18,7 +18,11 @@ def main():
             fibbonaci.append(fibbonaci[tracker - 1] + fibbonaci[tracker - 2]) 
             tracker += 1
 
-        print(str(i) + ", " for i in fibbonaci)
+        s = ""
+        for i in fibbonaci:
+            s = s + str(i) + " "
+
+        print (s)    
 
 
 
