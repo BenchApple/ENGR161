@@ -8,23 +8,21 @@ def main():
     # Looks like [height, anchorAX, anchorAY, anchorBX, anchorBY, anchorCX, anchorCY, tensileA, tensileB, tensileC, maxOverturnMoment]
     parameters = []
 
-    parameters.append(float(input("Enter the height (in meters): "))) # Stores the height of the tower.
-    
+    # While this is the correct solution according to the parameters, I find this to be an incredibly messy way of handling data.
+    parameters.append(float(input("Enter the height (in meters): "))) # Stores the height of the tower.    
     parameters.append(float(input("Enter the X coordinates of anchor point A (in meters): "))) # Stores the coordinates of anchor A.
     parameters.append(float(input("Enter the Y coordinates of anchor point A (in meters): "))) # Stores the coordinates of anchor A.
     parameters.append(float(input("Enter the X coordinates of anchor point B (in meters): "))) # Stores the coordinates of anchor B.
     parameters.append(float(input("Enter the Y coordinates of anchor point B (in meters): "))) # Stores the coordinates of anchor B.
     parameters.append(float(input("Enter the X coordinates of anchor point C (in meters): "))) # Stores the coordinates of anchor C.
     parameters.append(float(input("Enter the Y coordinates of anchor point C (in meters): "))) # Stores the coordinates of anchor C.
-
     parameters.append(float(input("Enter the tensile force in cable DA (in newtons): "))) # Stores the value of the tensile force in cable DA in newtons.
     parameters.append(float(input("Enter the tensile force in cable DB (in newtons): "))) # Stores the value of the tensile force in cable DB in newtons.
     parameters.append(float(input("Enter the tensile force in cable DC (in newtons): "))) # Stores the value of the tensile force in cable DC in newtons.
-
     parameters.append(float(input("Enter the maximum value for the overturning moment (in N-m): "))) # Stores the value of the maximum overturning moment of the tower.
 
     # Get the perpendicular force components for each of the anchors.
-    perpendicularForceA = getPerpendicularForceComponents(parameters[1], parameters[2], parameters[7], parameters[0])
+    perpendicularForceA = getPerpendicularForceComponents(parameters[1], parameters[2], parameters[7], parameters[0]) # For each of these we are inputting (anchorX, anchorY, tensileForce, height)
     perpendicularForceB = getPerpendicularForceComponents(parameters[3], parameters[4], parameters[8], parameters[0])
     perpendicularForceC = getPerpendicularForceComponents(parameters[5], parameters[6], parameters[9], parameters[0])
 
@@ -39,6 +37,7 @@ def main():
     # Stores the Overturn Moment that results from the inputted values.
     resultantOverturnMoment = perpendicularForceMagn * parameters[0]
 
+    print ("")
     print ("The overturning moment magnitude is {:.4f} N-m.".format(resultantOverturnMoment))
 
     # Check if the overturn moment is low enough.
@@ -74,13 +73,6 @@ def getPerpendicularForceComponents(anchorX, anchorY, tensileForce, height):
     perpendicularForceComponents[1] = forceUnitDirection[1] * tensileForce
 
     return perpendicularForceComponents
-
-
-# Helper method to split the anchor coodinate inputs into usable floats.
-def splitCoords(s): # TODO fix this method.
-    splitString = s.strip('][').split(', ')
-
-    return [float(splitString[0]), float(splitString[1])]
 
 
 # Cautionary execution to prevent execution of main if this file is being accessed from another file.
