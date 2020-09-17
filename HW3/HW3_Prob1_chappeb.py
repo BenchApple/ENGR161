@@ -3,27 +3,30 @@
 import math
 
 def main():
-    height = float(input("Enter the height (in meters): ")) # Stores the height of the tower.
+    # List to store all of the variables
+    #               0       1           2       3           4       5           6       7           8       9           10
+    # Looks like [height, anchorAX, anchorAY, anchorBX, anchorBY, anchorCX, anchorCY, tensileA, tensileB, tensileC, maxOverturnMoment]
+    parameters = []
+
+    parameters.append(float(input("Enter the height (in meters): "))) # Stores the height of the tower.
     
-    anchorA = input("Enter the coordinates of anchor point A (in meters): ") # Stores the coordinates of anchor A.
-    anchorB = input("Enter the coordinates of anchor point B (in meters): ") # Stores the coordinates of anchor B.
-    anchorC = input("Enter the coordinates of anchor point C (in meters): ") # Stores the coordinates of anchor C.
+    parameters.append(float(input("Enter the X coordinates of anchor point A (in meters): "))) # Stores the coordinates of anchor A.
+    parameters.append(float(input("Enter the Y coordinates of anchor point A (in meters): "))) # Stores the coordinates of anchor A.
+    parameters.append(float(input("Enter the X coordinates of anchor point B (in meters): "))) # Stores the coordinates of anchor B.
+    parameters.append(float(input("Enter the Y coordinates of anchor point B (in meters): "))) # Stores the coordinates of anchor B.
+    parameters.append(float(input("Enter the X coordinates of anchor point C (in meters): "))) # Stores the coordinates of anchor C.
+    parameters.append(float(input("Enter the Y coordinates of anchor point C (in meters): "))) # Stores the coordinates of anchor C.
 
-    tensileForceA = float(input("Enter the tensile force in cable DA (in newtons): ")) # Stores the value of the tensile force in cable DA in newtons.
-    tensileForceB = float(input("Enter the tensile force in cable DB (in newtons): ")) # Stores the value of the tensile force in cable DB in newtons.
-    tensileForceC = float(input("Enter the tensile force in cable DC (in newtons): ")) # Stores the value of the tensile force in cable DC in newtons.
+    parameters.append(float(input("Enter the tensile force in cable DA (in newtons): "))) # Stores the value of the tensile force in cable DA in newtons.
+    parameters.append(float(input("Enter the tensile force in cable DB (in newtons): "))) # Stores the value of the tensile force in cable DB in newtons.
+    parameters.append(float(input("Enter the tensile force in cable DC (in newtons): "))) # Stores the value of the tensile force in cable DC in newtons.
 
-    maxOverturnMoment = float(input("Enter the maximum value for the overturning moment (in N-m): ")) # Stores the value of the maximum overturning moment of the tower.
-
-    # Convert the string entered coordinates into usable integer values.
-    anchorACoords = splitCoords(anchorA)
-    anchorBCoords = splitCoords(anchorB)
-    anchorCCoords = splitCoords(anchorC)
+    parameters.append(float(input("Enter the maximum value for the overturning moment (in N-m): "))) # Stores the value of the maximum overturning moment of the tower.
 
     # Get the perpendicular force components for each of the anchors.
-    perpendicularForceA = getPerpendicularForceComponents(anchorACoords, tensileForceA, height)
-    perpendicularForceB = getPerpendicularForceComponents(anchorBCoords, tensileForceB, height)
-    perpendicularForceC = getPerpendicularForceComponents(anchorCCoords, tensileForceC, height)
+    perpendicularForceA = getPerpendicularForceComponents(parameters[1], parameters[2], parameters[7], parameters[0])
+    perpendicularForceB = getPerpendicularForceComponents(parameters[3], parameters[4], parameters[8], parameters[0])
+    perpendicularForceC = getPerpendicularForceComponents(parameters[5], parameters[6], parameters[9], parameters[0])
 
     # Will store the components of the perpendicular force.
     perpendicularForce = [0, 0]
@@ -34,12 +37,12 @@ def main():
     perpendicularForceMagn = math.sqrt((perpendicularForce[0] ** 2) + (perpendicularForce[1] ** 2))
 
     # Stores the Overturn Moment that results from the inputted values.
-    resultantOverturnMoment = perpendicularForceMagn * height
+    resultantOverturnMoment = perpendicularForceMagn * parameters[0]
 
     print ("The overturning moment magnitude is {:.4f} N-m.".format(resultantOverturnMoment))
 
     # Check if the overturn moment is low enough.
-    if resultantOverturnMoment < maxOverturnMoment:
+    if resultantOverturnMoment < parameters[10]:
         print ("This retraining system is safe.")
         return
     print ("This restraining system is not safe.")
@@ -47,7 +50,7 @@ def main():
 
 
 # Returns the x and y values of the forces perpendicular to the tower from the tensile force of the given anchor in list format [x,y].
-def getPerpendicularForceComponents(anchorCoords, tensileForce, height):
+def getPerpendicularForceComponents(anchorX, anchorY, tensileForce, height):
     # List three units long that holds the x, y, and z direction of the given force. Initialized to the zero vector
     forceUnitDirection = [0, 0, 0] 
 
@@ -59,11 +62,11 @@ def getPerpendicularForceComponents(anchorCoords, tensileForce, height):
     perpendicularForceComponents = [0, 0]
 
     # Calculate the direction magnitude.
-    directionMagnitude = math.sqrt((anchorCoords[0] ** 2) + (anchorCoords[1] ** 2) + height ** 2)
+    directionMagnitude = math.sqrt((anchorX ** 2) + (anchorY ** 2) + height ** 2)
 
     # Calculate the components of the tensile force's unit vector.
-    forceUnitDirection[0] = anchorCoords[0] / directionMagnitude
-    forceUnitDirection[1] = anchorCoords[1] / directionMagnitude
+    forceUnitDirection[0] = anchorX / directionMagnitude
+    forceUnitDirection[1] = anchorY / directionMagnitude
     forceUnitDirection[2] = height / directionMagnitude
 
     # Calculate the component forces perpendicular to the tower using their unit directions and the given tensile force.
