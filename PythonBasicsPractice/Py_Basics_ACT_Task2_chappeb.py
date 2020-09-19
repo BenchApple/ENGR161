@@ -6,7 +6,7 @@ def main():
 
     if temperature > 1000 or pressure > 20:
         print("System is in Danger!")
-    elif temperature > 750 or pressure > 10:
+    elif temperature > 750 and pressure > 10:
         print("System is normal.")
     else:
         print("System is in warning.")
