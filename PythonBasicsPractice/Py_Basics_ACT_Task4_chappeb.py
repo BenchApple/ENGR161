@@ -1,4 +1,20 @@
+# Activity Python Basics Practice
+# File: Py_Basics_ACT_Task4_chappeb.py
+# Date: 9/22/20
+# By: Ben Chappell
+# chappeb
+# Section: 4
+# Team: 54
+#
+# ELECTRONIC SIGNATURE
 # Ben Chappell
+#
+# The electronic signature above indicates that the program
+# submitted for evaluation is my individual work. I have
+# a general understanding of all aspects of its development
+# and execution.
+#
+# Accepts an integer, then computes the factorial of that integer.
 
 def main():
     # Accept the user input.

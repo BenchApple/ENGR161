@@ -1,5 +1,20 @@
+# Activity Python Basics Practice
+# File: Py_Basics_ACT_Task1B_chappeb.py
+# Date: 9/22/20
+# By: Ben Chappell
+# chappeb
+# Section: 4
+# Team: 54
+#
+# ELECTRONIC SIGNATURE
 # Ben Chappell
-
+#
+# The electronic signature above indicates that the program
+# submitted for evaluation is my individual work. I have
+# a general understanding of all aspects of its development
+# and execution.
+#
+# Accepts an integer n, then computes and outputs the fibonnaci sequence up n values.
 
 def main():
     # Stores the amount of fibbonaci numbers we need to generate to find the one the use requests.
