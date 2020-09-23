@@ -3,9 +3,14 @@
 def main():
     # Accept the user input.
     n = float(input("What is your desired value of n? "))
+
+    if n % 1 != 0:
+        print("Error: Negative input")
+        return
+
     n = int(n)
 
-    output = factorial(n)
+    output = myFactorial(n)
 
     print(("The factorial of " + str(n) + " is " + str(output) + ".") if output > 0 else ("Error: Negative input."))
         
@@ -21,7 +26,7 @@ def factorialR(n):
 # The actual what I assume is desired method for finding the factorial
 # Uses a legitimate loop function we learned in class.
 # Returns -1 if the input is invalid.
-def factorial(n):
+def myFactorial(n):
     final = 1 # Stores the final value to return of the function.
 
     # Executes the factorial method via a for loop.
