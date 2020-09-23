@@ -1,4 +1,21 @@
-# Ben Chappell.
+# Activity Python Basics Practice
+# File: Factorial.py
+# Date: 9/22/2-
+# By: Ben Chappell
+# chappeb
+# Section: 4
+# Team: 54
+#
+# ELECTRONIC SIGNATURE
+# Ben Chappell
+#
+# The electronic signature above indicates that the program
+# submitted for evaluation is my individual work. I have
+# a general understanding of all aspects of its development
+# and execution.
+#
+# Calculates the factorial of any given positive integer.
+
 
 # Recursive factorial function
 # Still technically a looping method, just not traditional.
