@@ -21,7 +21,7 @@ def main():
 # Then if n is anything other than zero, it evaluates the second half of the or statements, which executes the recursive bloc.
 # Returns -1 if the input is invalid.
 def factorialR(n):
-    return (not n or n * factorialR(n-1)) if (n >= 0 and n % 1 == 0) else -1
+    return int((not n or n * factorialR(n-1)) if (n >= 0 and n % 1 == 0) else -1)
 
 # The actual what I assume is desired method for finding the factorial
 # Uses a legitimate loop function we learned in class.
