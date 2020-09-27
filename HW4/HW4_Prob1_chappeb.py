@@ -43,21 +43,25 @@ def main():
     n = 2
     
     # Store the current and previous calculated integrals.
-    prevCalcedIntegral = 1 # Initialized to an arbitrary value
-    currCalcedIntegral = prevCalcedIntegral + 2 * convCrit # Need to initialize this so that the difference between the previous two values is creater than convCrit
+    currCalcedIntegral = 0 # initialized to zero so that something that doesn't enter the while loop computes properly.
+    prevCalcedIntegral = -convCrit - 1
     
     # Define f(x) as exp(cos(x)) as a lambda function.
     f = lambda x : exp(cos(x))
 
     # While loop continually computes the integral using the trapezoid rule until the computed integral
-    while (currCalcedIntegral - prevCalcedIntegral) >= convCrit:
+    while abs(currCalcedIntegral - prevCalcedIntegral) >= convCrit:
         deltaX = (upperbound - lowerbound) / n
+
+        # lambda function to be used to determine the value of x_k
+        x = lambda k : (lowerbound + (k * deltaX))
 
         # Move the currently calculated integral to the previously calculated integral.
         prevCalcedIntegral = currCalcedIntegral
+        
 
         # Calculate the integral using the formula described in the problem prompt.
-        currCalcedIntegral = (deltaX / 2) * (f(lowerbound) + (2 * sum(f(lowerbound + k * deltaX) for k in range(1, n))) + f(upperbound))
+        currCalcedIntegral = (deltaX / 2) * (f(lowerbound) + (2 * sum(f(x(k)) for k in range(1, n))) + f(upperbound))
 
         # Iterate n by one.
         n += 1
@@ -65,6 +69,7 @@ def main():
     #---------------------------------------------------
     #  Outputs
     #---------------------------------------------------
+    print("")
     print("The value of the integral is " + str(currCalcedIntegral))
 
 
