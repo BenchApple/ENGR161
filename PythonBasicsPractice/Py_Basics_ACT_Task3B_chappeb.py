@@ -1,21 +1,5 @@
-# Activity Python Basics Practice
-# File: Py_Basics_ACT_Task3B_chappeb.py
-# Date: 9/22/20
-# By: Ben Chappell
-# chappeb
-# Section: 4
-# Team: 54
-#
-# ELECTRONIC SIGNATURE
 # Ben Chappell
-#
-# The electronic signature above indicates that the program
-# submitted for evaluation is my individual work. I have
-# a general understanding of all aspects of its development
-# and execution.
-#
-# Accepts the components of a unit vector pointing in the direction of the hour hand of a clock assuming
-# that the minute hand is in the top position, and calculates the time and the number of times the gong will ring.
+
 
 def main():
     # Variable Declaration
