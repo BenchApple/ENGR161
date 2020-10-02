@@ -58,7 +58,6 @@ def main():
 
         # Move the currently calculated integral to the previously calculated integral.
         prevCalcedIntegral = currCalcedIntegral
-        
 
         # Calculate the integral using the formula described in the problem prompt.
         currCalcedIntegral = (deltaX / 2) * (f(lowerbound) + (2 * sum(f(x(k)) for k in range(1, n))) + f(upperbound))
