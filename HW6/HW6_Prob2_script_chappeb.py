@@ -33,7 +33,7 @@ def main():
     capK = int(input("Enter maximum terms for the Fourier Series -> "))
 
     # Calculate the tStep according to it equalling tMax / 50
-    tStep = tMax / 50
+    tStep = period / 50
 
     # Get the sawtooth function from our sawtooth script. Set tStep using the maximum T divided by 50.
     sawtooth = st(ampl, period, tMax, tStep)
@@ -65,7 +65,7 @@ def main():
     # We will use both sawtooth and fourier as y values, and use tVals as our independent variable.
     plt.figure(1)
     plt.title("Sawtooth and its Fourier Series vs time", fontsize=15)
-    plt.axis(xlim=(0, tMax), option='on')
+    # plt.axis(xlim=(0, tMax), option=True)
     plt.plot(tVals, sawtooth, label = 'sawtooth')
     plt.plot(tVals, fourier, label = 'fourier series')
     plt.show()
