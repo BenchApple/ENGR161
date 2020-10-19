@@ -32,7 +32,7 @@ def main():
     tMax = float(input("Enter maximum time -> "))
     capK = int(input("Enter maximum terms for the Fourier Series -> "))
 
-    # Calculate the tStep according to it equalling tMax / 50
+    # Calculate the tStep according to it equalling period / 50
     tStep = period / 50
 
     # Get the sawtooth function from our sawtooth script. Set tStep using the maximum T divided by 50.
@@ -63,18 +63,19 @@ def main():
 
     # Begin the plotting mechanism.
     # We will use both sawtooth and fourier as y values, and use tVals as our independent variable.
-    plt.figure(1)
-    plt.title("Sawtooth and its Fourier Series vs time", fontsize=15)
+    plt.figure(num=1, figsize=(13,8), dpi=80)
+    plt.title("Sawtooth Function: Actual vs Approximate", fontsize=15)
+    plt.xlabel("Time t (seconds)", fontsize=13)
+    plt.ylabel("S(t)", fontsize=13)
     # plt.axis(xlim=(0, tMax), option=True)
-    plt.plot(tVals, sawtooth, label = 'sawtooth')
-    plt.plot(tVals, fourier, label = 'fourier series')
+    plt.plot(tVals, sawtooth, label = 'Sawtooth', linewidth="1")
+    plt.plot(tVals, fourier, label = 'Approximate', linestyle="--")
+    plt.legend(bbox_to_anchor=(1.01, 1), borderaxespad=0)
     plt.show()
-
 
 # Finds the value of b sub k in the summation for the fourier series.
 def b_k(A, k):
     return -((2 * A) / (pi * k)) * pow(-1, k)
-
 
 # Cautionary if statement.
 if __name__ == "__main__":
