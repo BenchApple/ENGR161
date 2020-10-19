@@ -41,24 +41,34 @@ def main():
     # Fourier stores the fourier values, tVals stores the values of t we are evaluating.
     fourier = []
     tVals = []
+
+    # Set the starting values for our tracker variables.
+    t = 0
+
     # Generate the fourier series list.
-    for t in range(0, tMax, tStep):
+    while t < tMax:
         # Stores the result of the summation.
         s = 0
 
         # Iterate through the k values to complete the summation in the fourier series.
-        for k in range(0, capK):
+        for k in range(1, int(capK)):
             s += b_k(ampl, k) * sin((2 * k * pi * t) / period)
 
         # add the value of summation to the fourier series list.
         fourier.append(s)
         tVals.append(t)
 
+        # Iterate the iteratable values.
+        t += tStep
+
     # Begin the plotting mechanism.
     # We will use both sawtooth and fourier as y values, and use tVals as our independent variable.
     plt.figure(1)
+    plt.title("Sawtooth and its Fourier Series vs time", fontsize=15)
+    plt.axis(xlim=(0, tMax), option='on')
     plt.plot(tVals, sawtooth, label = 'sawtooth')
     plt.plot(tVals, fourier, label = 'fourier series')
+    plt.show()
 
 
 # Finds the value of b sub k in the summation for the fourier series.
