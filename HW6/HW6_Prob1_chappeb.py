@@ -123,38 +123,31 @@ def qsort(n, lo, hi, para, dir):
 # through list n, we can sort the list recursively.
 def partition(n, lo, hi, para, dir):
     # If sorting in increasing order, set pivot to n[hi] and i to lo, otherwise the inverse.
-    if not dir:
-        pivot = n[hi]
-        i = lo
-    else:
-        pivot = n[lo]
-        i = hi
+    pivot = n[int((hi + lo) / 2)]
+    i = lo
+    j = hi
 
-    # Iterate through all members of the current partition
-    for j in range(lo, hi):
-        # Swap the pivot with the current item if the pivot is greater than the current item.
-        if comparePlants(para, dir, n[j], pivot):
-            # Swap n[i] with n[j]
-            temp = n[i]
-            n[i] = n[j]
-            n[j] = temp
-        
-            # Iterate i
+    # Infinite loop until we return something. 
+    # Finding a place for the pivot where it is exactly in the middle of the two sides.
+    # When ascending, want the right side to be wholly less than, and the left side to be wholly greater than the pivot
+    # Opposite when descending.
+    while True:
+        while comparePlants(para, dir, n[i], pivot):
             i += 1
 
-    # Swap n[i] and n[hi]
-    if not dir:
-        temp = n[i]
-        n[i] = n[hi]
-        n[hi] = temp
-    # swap n[i] and n[lo] if sorting descending
-    else:
-        temp = n[i]
-        n[i] = n[lo]
-        n[lo] = temp
+        while comparePlants(para, int(not dir), n[j], pivot):
+            j -= 1
 
-    # Return the value of i as the partition.
-    return i
+        # If the desired status is met, return the location of the pivot
+        if i >= j:
+            return j
+
+        # Swap the locations of i and j
+        temp = n[i]
+        n[i] = n[j]
+        n[j] = temp
+        i += 1
     
+# Cautionary if statement
 if __name__ == "__main__":
     main()
