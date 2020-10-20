@@ -30,18 +30,18 @@ def main():
     # Read in the data from the input file, line by line.
     inputLines = inputFile.readlines()
     # Remove the first line, since it only has trash identifiers.
-    columnHeaders = inputLines.pop(inputLines[0])
+    columnHeaders = inputLines.pop(0)
 
     # Iterate through the lines, cleaning the data into actual integers and floats.
     dataset = []
     for line in inputLines:
-        separatedLine = line.split(" ")
+        line = line.strip("\n")
+        separatedLine = line.split()
         
         # Turn the data into ints or floats, depending on what's appropriate.
         for s in range(0, len(separatedLine)):
             try:
                 separatedLine[s] = int(separatedLine[s])
-                break
             except:
                 separatedLine[s] = float(separatedLine[s])
 
