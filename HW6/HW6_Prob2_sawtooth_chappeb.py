@@ -23,13 +23,17 @@ def HW6_Prob2_sawtooth_chappeb(ampl=1.0, period=1.0, tMax=60.0, tStep=1.0):
     # The list where we put each value from the function, will be returned.
     output = []
 
-    # Iterate through the given values, 
-    for i in range(0, tMax, tStep):
+    # Iterate through the given values
+    i = 0
+    while i < tMax:
         # Extend the function to evaluate outside of it's given period.
         t = i - (floor(i / period) * period)
 
         # Append the result of the function at the given time according to the 
         output.append(sawtooth(ampl, period, t))
+
+        # iterate the values that we need to iterate.
+        i += tStep
     
     # Return the resultant.
     return output

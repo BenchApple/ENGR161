@@ -32,8 +32,8 @@ def main():
     tMax = float(input("Enter maximum time -> "))
     capK = int(input("Enter maximum terms for the Fourier Series -> "))
 
-    # Calculate the tStep according to it equalling tMax / 50
-    tStep = tMax / 50
+    # Calculate the tStep according to it equalling period / 50
+    tStep = period / 50
 
     # Get the sawtooth function from our sawtooth script. Set tStep using the maximum T divided by 50.
     sawtooth = st(ampl, period, tMax, tStep)
@@ -41,30 +41,41 @@ def main():
     # Fourier stores the fourier values, tVals stores the values of t we are evaluating.
     fourier = []
     tVals = []
+
+    # Set the starting values for our tracker variables.
+    t = 0
+
     # Generate the fourier series list.
-    for t in range(0, tMax, tStep):
+    while t < tMax:
         # Stores the result of the summation.
         s = 0
 
         # Iterate through the k values to complete the summation in the fourier series.
-        for k in range(0, capK):
+        for k in range(1, int(capK)):
             s += b_k(ampl, k) * sin((2 * k * pi * t) / period)
 
         # add the value of summation to the fourier series list.
         fourier.append(s)
         tVals.append(t)
 
+        # Iterate the iteratable values.
+        t += tStep
+
     # Begin the plotting mechanism.
     # We will use both sawtooth and fourier as y values, and use tVals as our independent variable.
-    plt.figure(1)
-    plt.plot(tVals, sawtooth, label = 'sawtooth')
-    plt.plot(tVals, fourier, label = 'fourier series')
-
+    plt.figure(num=1, figsize=(13,8), dpi=80)
+    plt.title("Sawtooth Function: Actual vs Approximate", fontsize=15)
+    plt.xlabel("Time t (seconds)", fontsize=13)
+    plt.ylabel("S(t)", fontsize=13)
+    # plt.axis(xlim=(0, tMax), option=True)
+    plt.plot(tVals, sawtooth, label = 'Sawtooth', linewidth="1")
+    plt.plot(tVals, fourier, label = 'Approximate', linestyle="--")
+    plt.legend(bbox_to_anchor=(1.01, 1), borderaxespad=0)
+    plt.show()
 
 # Finds the value of b sub k in the summation for the fourier series.
 def b_k(A, k):
     return -((2 * A) / (pi * k)) * pow(-1, k)
-
 
 # Cautionary if statement.
 if __name__ == "__main__":
