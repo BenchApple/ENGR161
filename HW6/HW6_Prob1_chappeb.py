@@ -47,7 +47,17 @@ def main():
 
         dataset.append(separatedLine)
 
-    print(dataset)
+    # Replace starting and ending height with the amount of growth.
+    for plant in dataset:
+        plant[2] = round(plant.pop(3) - plant[2], 2)
+
+    print (dataset)
+
+    # TODO Create some system to determine which parameter to sort by
+    # Determine which method to sort by. An input P means Plant ID, S - Status
+    # G - growth data
+
+    # TODO Create some method to sort by a specific parameter.
 
 
 
