@@ -30,7 +30,7 @@ def main():
     # Read in the data from the input file, line by line.
     inputLines = inputFile.readlines()
     # Remove the first line, since it only has trash identifiers.
-    columnHeaders = inputLines.pop(0)
+    inputLines.pop(0)
 
     # Iterate through the lines, cleaning the data into actual integers and floats.
     dataset = []
@@ -61,11 +61,36 @@ def main():
     # From the user, A means increasing, D means decreasing.
     sortDir = sortingDirection(reoorgCode[1])
 
-    # TODO Create some method to sort by a specific parameter. Custom comparison method most likely.
-
+    # Sort dataset according to the parameters we just defined.
     quicksort(dataset, sortPara, sortDir)
-    print(dataset)
 
+    # Create the Header String - hard coded. Then write it to the file.
+    newHeader = "PlantID  Status  Growth  Concentration\n"
+    outputFile.write(newHeader)
+
+    # The exact locations where each of the data points should be placed in the formatted string.
+    startLocations = [0, 9, 17, 25]
+    # Turn each of the database lines into the desired strings to print
+    for line in dataset:
+        # Create a string the same length as the new header, then populate it with spaces and add a newline.
+        formatted = [' ' for i in range(0, len(newHeader) - 1)]
+        formatted.append('\n')
+
+        # Replace the appropriate spots, character by character, with the characters from the data points
+        for i in range(0, len(line)):
+            line[i] = str(line[i])
+
+            # Go through character by character
+            for j in range(0, len(line[i])):
+                formatted[startLocations[i] + j] = line[i][j]
+            
+        # Finalize the formatted string by joining all elements of the list version of itself.
+        formatted = "".join(formatted)
+        outputFile.write(formatted)
+
+    # Give the user some sort of closure or something
+    print ("")
+    print ("File " + outputID + " has been created.")
 
     # Close our files.
     inputFile.close()
