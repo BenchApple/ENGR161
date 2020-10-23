@@ -19,7 +19,7 @@
 
 from math import floor
 
-def HW6_Prob2_sawtooth_chappeb(ampl=1.0, period=1.0, tMax=60.0, tStep=1.0):
+def HW6_Prob2_sawtooth_chappeb(ampl, period, tMax, tStep):
     # The list where we put each value from the function, will be returned.
     output = []
 
